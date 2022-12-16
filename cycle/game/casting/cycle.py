@@ -12,9 +12,11 @@ class Cycle(Actor):
     Attributes:
         _points (int): The number of points the food is worth.
     """
-    def __init__(self, color):
+    def __init__(self, color, x_location, y_location):
         super().__init__()
         self._cycle_color = color
+        self._cycle_x_location = x_location
+        self._cycle_y_location = y_location
         self._segments = []
         self._prepare_body()
 
@@ -25,6 +27,7 @@ class Cycle(Actor):
         # move all segments
         for segment in self._segments:
             segment.move_next()
+
         # update velocities
         for i in range(len(self._segments) - 1, 0, -1):
             trailing = self._segments[i]
@@ -53,8 +56,8 @@ class Cycle(Actor):
         self._segments[0].set_velocity(velocity)
     
     def _prepare_body(self):
-        x = int(constants.MAX_X / 3)
-        y = int(constants.MAX_Y / 2)
+        x = int(self._cycle_x_location)
+        y = int(self._cycle_y_location)
 
         for i in range(constants.CYCLE_LENGTH):
             position = Point(x - i * constants.CELL_SIZE, y)

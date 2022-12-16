@@ -33,19 +33,22 @@ class HandleCollisionsAction(Action):
     # def _handle_food_collision(self, cast):
     #     """Updates the score nd moves the food if the snake collides with the food.
         
-    #     Args:
-    #         cast (Cast): The cast of Actors in the game.
-    #     """
-    #     score = cast.get_first_actor("scores")
+    # #     Args:
+    # #         cast (Cast): The cast of Actors in the game.
+    # #     """
+    #     # score = cast.get_first_actor("scores")
     #     # food = cast.get_first_actor("foods")
     #     cycle = cast.get_first_actor("cycles")
+    #     second_cycle = cast.get_first_actor("second_cycle")
     #     head = cycle.get_head()
+    #     second_head = second_cycle.get_head()
 
     #     # if head.get_position().equals(food.get_position()):
-    #     #     points = food.get_points()
-    #     #     cycle.grow_tail(points)
-    #     #     score.add_points(points)
-    #     #     food.reset()
+    #     if head.move_next:
+    #         # points = food.get_points()
+    #         cycle.grow_tail(number_of_segments, _cycle_color)
+    #         # score.add_points(points)
+    #         # food.reset()
     
     def _handle_segment_collision(self, cast):
         """Sets the game over flag if the snake collides with one of its segments.
@@ -68,11 +71,18 @@ class HandleCollisionsAction(Action):
             if second_head.get_position().equals(segment.get_position()):
                 self._is_game_over = True
         
-        # if head.get_position().equals(second_head.get_position()) or second_head.get_position().equals(head.get_position):
-        #     self._is_game_over
+        if head.get_position().equals(second_head.get_position()):
+            self._is_game_over = True
         
-        # elif head.get_position().equals(second_cycle_segments.get_position) or second_head.get_position().equals(segments.get_position()):
-        #     self._is_game_over
+        for segment in segments:
+            tail = segment
+
+            for segm in second_cycle_segments:
+                tail2 = segm
+
+                if tail.get_position().equals(tail2.get_position()):
+                    self._is_game_over = True
+
         
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the snake and food white if the game is over.
