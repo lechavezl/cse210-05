@@ -21,9 +21,15 @@ class Cycle(Actor):
         self._prepare_body()
 
     def get_segments(self):
+        """Get the segments of the cycle
+        Return:
+            self._segments
+        """
         return self._segments
 
     def move_next(self):
+        """Move the cycle
+        """
         # move all segments
         for segment in self._segments:
             segment.move_next()
@@ -36,9 +42,17 @@ class Cycle(Actor):
             trailing.set_velocity(velocity)
 
     def get_head(self):
+        """Get the cycle's head
+        """
         return self._segments[0]
 
     def grow_tail(self, number_of_segments, _cycle_color):
+        """Create and makes the cycles tail grow.
+        
+        Arg:
+            number_of_segments (int): The given value.
+            _cycle_color: The given color.
+        """
         for i in range(number_of_segments):
             tail = self._segments[-1]
             velocity = tail.get_velocity()
@@ -53,9 +67,12 @@ class Cycle(Actor):
             self._segments.append(segment)
 
     def turn_head(self, velocity):
+        """make the cycle's head turn to other direction
+        """
         self._segments[0].set_velocity(velocity)
     
     def _prepare_body(self):
+        """Prepare the cycle's body"""
         x = int(self._cycle_x_location)
         y = int(self._cycle_y_location)
 

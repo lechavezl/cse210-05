@@ -26,29 +26,9 @@ class HandleCollisionsAction(Action):
             script (Script): The script of Actions in the game.
         """
         if not self._is_game_over:
-            # self._handle_food_collision(cast)
             self._handle_segment_collision(cast)
             self._handle_game_over(cast)
 
-    # def _handle_food_collision(self, cast):
-    #     """Updates the score nd moves the food if the snake collides with the food.
-        
-    # #     Args:
-    # #         cast (Cast): The cast of Actors in the game.
-    # #     """
-    #     # score = cast.get_first_actor("scores")
-    #     # food = cast.get_first_actor("foods")
-    #     cycle = cast.get_first_actor("cycles")
-    #     second_cycle = cast.get_first_actor("second_cycle")
-    #     head = cycle.get_head()
-    #     second_head = second_cycle.get_head()
-
-    #     # if head.get_position().equals(food.get_position()):
-    #     if head.move_next:
-    #         # points = food.get_points()
-    #         cycle.grow_tail(number_of_segments, _cycle_color)
-    #         # score.add_points(points)
-    #         # food.reset()
     
     def _handle_segment_collision(self, cast):
         """Sets the game over flag if the snake collides with one of its segments.
@@ -95,7 +75,6 @@ class HandleCollisionsAction(Action):
             second_cycle = cast.get_first_actor("second_cycle")
             segments = cycle.get_segments()
             second_cycle_segments = second_cycle.get_segments()
-            # food = cast.get_first_actor("foods")
 
             x = int(constants.MAX_X / 2)
             y = int(constants.MAX_Y / 2)
